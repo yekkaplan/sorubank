@@ -27,32 +27,32 @@ class DataGrid extends StatelessWidget {
 
   final List<DataGridModelMock> data = [
     DataGridModelMock(
-      title: Strings.vocation.tr,
-      subtitle: '10 - 20 ${Strings.vocation.tr}',
+      title: 'KPSS 2023 Soru Çözüm',
+      subtitle: '100 soru',
       iconPath: 'assets/vectors/vocation.svg',
-      backgroundColor: const Color(0xFFEFF5FB),
+      backgroundColor: const Color(0xFFEEF9FF),
       iconBackgroundColor: const Color(0xFF83A0EC),
     ),
     DataGridModelMock(
-      title: Strings.remainingTasks.tr,
-      subtitle: '5 - 10 ${Strings.tasks.tr}',
+      title: 'KPSS 2024 Soru Çözüm',
+      subtitle: '60 Soru',
       iconPath: 'assets/vectors/tasks.svg',
       backgroundColor: const Color(0xFFEEF9FF),
-      iconBackgroundColor: const Color(0xFF92D5F6),
+      iconBackgroundColor: const Color.fromARGB(255, 63, 125, 180),
     ),
     DataGridModelMock(
-      title: Strings.daysOfDelays.tr,
-      subtitle: '10 - 20 ${Strings.days.tr}',
-      iconPath: 'assets/vectors/alarm.svg',
-      backgroundColor: const Color(0xFFF4F0FC),
-      iconBackgroundColor: const Color(0xFFAB99D9),
+      title: 'Ehliyet Soru Çözüm',
+      subtitle: '60 Soru',
+      iconPath: 'assets/vectors/vocation.svg',
+      backgroundColor: const Color(0xFFEEF9FF),
+      iconBackgroundColor: const Color.fromARGB(255, 98, 170, 206),
     ),
     DataGridModelMock(
-      title: Strings.absentDays.tr,
-      subtitle: '10 - 20 ${Strings.days.tr}',
-      iconPath: 'assets/vectors/absent.svg',
-      backgroundColor: const Color(0xFFFEF0EF),
-      iconBackgroundColor: const Color(0xFFF9928A),
+      title: 'Yabancı Dil Sınavları',
+      subtitle: '60 Soru',
+      iconPath: 'assets/vectors/vocation.svg',
+      backgroundColor: const Color(0xFFEEF9FF),
+      iconBackgroundColor: const Color.fromARGB(255, 221, 153, 239),
     ),
   ];
 
@@ -66,10 +66,10 @@ class DataGrid extends StatelessWidget {
       itemCount: data.length,
       shrinkWrap: true,
       gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-        crossAxisCount: 2,
+        crossAxisCount: 1,
         crossAxisSpacing: 11.w,
         mainAxisSpacing: 10.h,
-        mainAxisExtent: 120.h,
+        mainAxisExtent: 80.h,
       ),
       itemBuilder: (ctx, index) {
         var gridData = data[index];
@@ -79,8 +79,8 @@ class DataGrid extends StatelessWidget {
             color: gridData.backgroundColor,
             borderRadius: BorderRadius.circular(8),
           ),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Container(
                 height: 37.h,
@@ -96,9 +96,16 @@ class DataGrid extends StatelessWidget {
                 ),
               ),
               8.verticalSpace,
-              Text(gridData.title,style: theme.textTheme.bodySmall,),
+              Text(
+                gridData.title,
+                style: theme.textTheme.bodySmall,
+              ),
               7.verticalSpace,
-              Text(gridData.subtitle,style: theme.textTheme.bodyMedium?.copyWith(color: const Color(0xFF4B4C4D),)),
+              Text(gridData.subtitle,
+                  style: theme.textTheme.bodyMedium?.copyWith(
+                    color: const Color(0xFF4B4C4D),
+                  )),
+              Icon(Icons.arrow_forward_outlined)
             ],
           ),
         );

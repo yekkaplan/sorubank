@@ -3,13 +3,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
+import 'package:getx_skeleton/app/modules/home/views/widgets/main_row_buttons.dart';
 
 import '../../../../config/translations/strings_enum.dart';
 import '../../../components/api_error_widget.dart';
 import '../../../components/my_widgets_animator.dart';
 import '../controllers/home_controller.dart';
-import 'widgets/data_grid.dart';
-import 'widgets/employees_list.dart';
+import 'widgets/examples_grid.dart';
+import 'widgets/lecture_list.dart';
 import 'widgets/header.dart';
 
 class HomeView extends GetView<HomeController> {
@@ -20,67 +21,66 @@ class HomeView extends GetView<HomeController> {
     return Scaffold(
       body: Column(
         children: [
-          // ----------------------- Header ----------------------- //
           const Header(),
+          GetBuilder<HomeController>(builder: (_) {
+            var theme = Theme.of(context);
 
-          // ----------------------- Content ----------------------- //
-          GetBuilder<HomeController>(
-            builder: (_) {
-              return Expanded(
-                child: MyWidgetsAnimator(
-                  apiCallStatus: controller.apiCallStatus,
-                  loadingWidget: () => const Center(child: CupertinoActivityIndicator(),),
-                  errorWidget: () => ApiErrorWidget(
-                      message: Strings.internetError.tr,
-                      retryAction: () => controller.getData(),
-                      padding: EdgeInsets.symmetric(horizontal: 20.w),
-                  ),
-                  successWidget: () => SingleChildScrollView(
-                    child: Column(
-                      children: [
-                        20.verticalSpace,
-                        // ----------------------- Attendance List Tile ----------------------- //
-                        Padding(
-                          padding: EdgeInsets.symmetric(horizontal: 20.w),
-                          child: ListTile(
-                            title: Text(Strings.attendanceRegistration.tr),
-                            subtitle: Text(Strings.time.tr),
-                            trailing: const Icon(Icons.arrow_forward),
-                            leading: Container(
-                              height: 47.h,
-                              width: 47.h,
-                              decoration: BoxDecoration(
-                                color: Theme.of(context).primaryColor,
-                                borderRadius: BorderRadius.circular(8),
-                              ),
-                              child: SvgPicture.asset(
-                                'assets/vectors/profile.svg',
-                                fit: BoxFit.none,
-                                color: Colors.white,
-                                height: 19.h,
-                                width: 19.h,
-                              ),
+            return Expanded(
+              child: MyWidgetsAnimator(
+                apiCallStatus: controller.apiCallStatus,
+                loadingWidget: () => const Center(
+                  child: CupertinoActivityIndicator(),
+                ),
+                errorWidget: () => ApiErrorWidget(
+                  message: Strings.internetError.tr,
+                  retryAction: () => controller.getData(),
+                  padding: EdgeInsets.symmetric(horizontal: 20.w),
+                ),
+                successWidget: () => SingleChildScrollView(
+                  child: Column(
+                    children: [
+                      CustomButtonRow(),
+                      Padding(
+                        padding: EdgeInsets.symmetric(horizontal: 20.w),
+                        child: Row(
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            Text(
+                              'Son Eklenen Testler',
+                              style: theme.textTheme.displaySmall,
                             ),
-                          ),
+                            const Spacer(),
+                            Row(
+                              children: [
+                                Text(
+                                  'Hepsini Göster',
+                                  style: theme.textTheme.bodySmall?.copyWith(
+                                    fontSize: 12.sp,
+                                  ),
+                                ),
+                                Icon(Icons.arrow_right_sharp)
+                              ],
+                            ),
+                          ],
                         ),
-                        20.verticalSpace,
+                      ),
 
-                        // ----------------------- Employee details cards ----------------------- //
-                        Padding(
-                          padding: EdgeInsets.symmetric(horizontal: 20.w),
-                          child: DataGrid(),
-                        ),
-                        20.verticalSpace,
+                      20.verticalSpace,
 
-                        // ----------------------- Employees List ----------------------- //
-                        EmployeesList(),
-                      ],
-                    ),
+                      Padding(
+                        padding: EdgeInsets.symmetric(horizontal: 20.w),
+                        child: DataGrid(),
+                      ),
+                      20.verticalSpace,
+
+                      // ----------------------- Employees List ----------------------- //
+                      EmployeesList(),
+                    ],
                   ),
                 ),
-              );
-            }
-          ),
+              ),
+            );
+          }),
         ],
       ),
     );
