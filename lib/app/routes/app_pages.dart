@@ -1,4 +1,6 @@
 import 'package:get/get.dart';
+import 'package:getx_skeleton/app/modules/home/views/question_solve.dart';
+import 'package:getx_skeleton/app/modules/home/views/test_list.dart';
 
 import '../modules/home/bindings/home_binding.dart';
 import '../modules/home/views/home_view.dart';
@@ -14,6 +16,16 @@ class AppPages {
     GetPage(
       name: _Paths.HOME,
       page: () => const HomeView(),
+      binding: HomeBinding(),
+    ),
+    GetPage(
+      name: _Paths.TESTLIST,
+      page: () => const TestListPage(),
+      binding: HomeBinding(),
+    ),
+    GetPage(
+      name: _Paths.QUESTION_SOLVE,
+      page: () => const QuestionSolvePage(),
       binding: HomeBinding(),
     ),
   ];

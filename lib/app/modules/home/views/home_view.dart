@@ -1,7 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:getx_skeleton/app/modules/home/views/widgets/main_row_buttons.dart';
 
@@ -10,8 +9,8 @@ import '../../../components/api_error_widget.dart';
 import '../../../components/my_widgets_animator.dart';
 import '../controllers/home_controller.dart';
 import 'widgets/examples_grid.dart';
-import 'widgets/lecture_list.dart';
 import 'widgets/header.dart';
+import 'widgets/lecture_list.dart';
 
 class HomeView extends GetView<HomeController> {
   const HomeView({Key? key}) : super(key: key);
@@ -24,7 +23,6 @@ class HomeView extends GetView<HomeController> {
           const Header(),
           GetBuilder<HomeController>(builder: (_) {
             var theme = Theme.of(context);
-
             return Expanded(
               child: MyWidgetsAnimator(
                 apiCallStatus: controller.apiCallStatus,
@@ -64,16 +62,12 @@ class HomeView extends GetView<HomeController> {
                           ],
                         ),
                       ),
-
                       20.verticalSpace,
-
                       Padding(
                         padding: EdgeInsets.symmetric(horizontal: 20.w),
                         child: DataGrid(),
                       ),
                       20.verticalSpace,
-
-                      // ----------------------- Employees List ----------------------- //
                       EmployeesList(),
                     ],
                   ),

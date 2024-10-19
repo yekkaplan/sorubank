@@ -5,8 +5,19 @@ import '../../../services/api_call_status.dart';
 import '../../../services/base_client.dart';
 
 class HomeController extends GetxController {
+
+  var options = ['A) Seçenekk 1', 'B) Seçenek 2', 'C) Seçenek 3', 'D) Seçenek 4'].obs;
+  var selectedOption = ''.obs;
+
+  void selectOption(String option) {
+    selectedOption.value = option;
+  }
+
+  var searchValue = ''.obs;
+
   // hold data coming from api
   List<dynamic>? data;
+
   // api call status
   ApiCallStatus apiCallStatus = ApiCallStatus.holding;
 
@@ -21,7 +32,8 @@ class HomeController extends GetxController {
         apiCallStatus = ApiCallStatus.loading;
         update();
       },
-      onSuccess: (response){ // api done successfully
+      onSuccess: (response) {
+        // api done successfully
         data = List.from(response.data);
         // *) indicate success state
         apiCallStatus = ApiCallStatus.success;
@@ -29,7 +41,7 @@ class HomeController extends GetxController {
       },
       // if you don't pass this method base client
       // will automaticly handle error and show message to user
-      onError: (error){
+      onError: (error) {
         // show error message to user
         BaseClient.handleApiError(error);
         // *) indicate error status
