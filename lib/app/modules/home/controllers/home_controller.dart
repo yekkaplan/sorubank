@@ -6,6 +6,19 @@ import '../../../services/base_client.dart';
 
 class HomeController extends GetxController {
 
+  // Seçilen değeri tutmak için bir observable değişken
+  var selectedValue = "Seçiniz".obs;
+
+  // Dropdown menüsünde gösterilecek seçenekler
+  List<String> optionsDropdown = ["Seçiniz", "KPSS", "TYT-AYT", "Ehliyet", "YDS"];
+
+  // Değer değiştirildiğinde çağrılan metot
+  void setSelectedValue(String value) {
+    selectedValue.value = value;
+  }
+
+
+
   var options = ['A) Seçenekk 1', 'B) Seçenek 2', 'C) Seçenek 3', 'D) Seçenek 4'].obs;
   var selectedOption = ''.obs;
 
