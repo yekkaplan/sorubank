@@ -17,7 +17,7 @@ class CustomButtonRow extends StatelessWidget {
       isDarkMode ? Color(0xFF2C3E50) : Color(0xFFEEE8A9),
     ];
 
-    final textColor = isDarkMode ? Colors.white : Colors.black87;
+    final textColor = isDarkMode ? Colors.white : Colors.black54;
 
     return Container(
       padding: EdgeInsets.symmetric(horizontal: 20, vertical: 20),
