@@ -158,7 +158,6 @@ class ContentGrid extends StatelessWidget {
         height: 24.h,
         width: 24.h,
         fit: BoxFit.scaleDown,
-        color: isDarkMode ? Colors.white : Colors.white,
       ),
     );
   }
