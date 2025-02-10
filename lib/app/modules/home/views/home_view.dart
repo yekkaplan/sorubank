@@ -39,7 +39,7 @@ class HomeView extends GetView<HomeController> {
                     children: [
                       CustomButtonRow(),
                       Padding(
-                        padding: EdgeInsets.symmetric(horizontal: 20.w),
+                        padding: EdgeInsets.symmetric(horizontal: 16.w),
                         child: Row(
                           crossAxisAlignment: CrossAxisAlignment.center,
                           children: [
@@ -62,12 +62,12 @@ class HomeView extends GetView<HomeController> {
                           ],
                         ),
                       ),
-                      20.verticalSpace,
+                      8.verticalSpace,
                       Padding(
                         padding: EdgeInsets.symmetric(horizontal: 20.w),
                         child: DataGrid(),
                       ),
-                      20.verticalSpace,
+                      8.verticalSpace,
                       EmployeesList(),
                     ],
                   ),

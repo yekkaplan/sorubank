@@ -5,134 +5,103 @@ import 'package:get/get.dart';
 import 'package:getx_skeleton/app/routes/app_pages.dart';
 
 class CustomButtonRow extends StatelessWidget {
+  const CustomButtonRow({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
-    final isDarkMode = Theme.of(context).brightness == Brightness.dark;
-
-    // Colors for the buttons
-    final buttonColors = [
-      isDarkMode ? Color(0xFF34495E) : Color(0xFF42A7DE),
-      isDarkMode ? Color(0xFF2C3E50) : Color(0xFF009FF5),
-      isDarkMode ? Color(0xFF34495E) : Color(0xFFBBF1FA),
-      isDarkMode ? Color(0xFF2C3E50) : Color(0xFFEEE8A9),
-    ];
-
-    final textColor = isDarkMode ? Colors.white : Colors.black54;
-
-    return Container(
-      padding: EdgeInsets.symmetric(horizontal: 20, vertical: 20),
-      child: Column(
+    return Padding(
+      padding: EdgeInsets.only(top: 8.h, bottom: 8), // Add spacing from the top
+      child: Wrap(
+        spacing: 8.w, // Proportional spacing
+        runSpacing: 8.h, // Proportional runSpacing
         children: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              _buildButton(
-                onTap: () {
-                  Get.toNamed(Routes.CONTENT_PAGE);
-                },
-                backgroundColor: buttonColors[0],
-                iconPath: 'assets/vectors/note.svg',
-                label: 'KPSS',
-                textColor: textColor,
-              ),
-              SizedBox(width: 16.w),
-              _buildButton(
-                onTap: () {
-                  Get.toNamed(Routes.TESTLIST);
-                },
-                backgroundColor: buttonColors[1],
-                iconPath: 'assets/vectors/open_note.svg',
-                label: 'TYT-AYT',
-                textColor: textColor,
-              ),
-            ],
-          ),
-          SizedBox(height: 8.h),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              _buildButton(
-                onTap: () {
-                  // Action for third button
-                },
-                backgroundColor: buttonColors[2],
-                iconPath: 'assets/vectors/car.svg',
-                label: 'Ehliyet',
-                textColor: textColor,
-              ),
-              SizedBox(width: 16.w),
-              _buildButton(
-                onTap: () {
-                  Get.toNamed(Routes.TESTLIST);
-                },
-                backgroundColor: buttonColors[3],
-                iconPath: 'assets/vectors/yds.svg',
-                label: 'YDS',
-                textColor: textColor,
-              ),
-            ],
-          ),
+          _buildButton(_ButtonConfig(
+            onTap: () => Get.toNamed(Routes.CONTENT_PAGE),
+            subLabel: 'En Güncel Kpss Soruları & Çözümleri',
+            iconPath: 'assets/vectors/note.svg',
+            label: 'KPSS',
+            width: 0.5.sw, // Proportional width
+          )),
+          _buildButton(_ButtonConfig(
+            onTap: () => Get.toNamed(Routes.TESTLIST),
+            iconPath: 'assets/vectors/open_note.svg',
+            subLabel: 'En Güncel TYT-AYT Soruları & Çözümleri',
+            label: 'TYT-AYT',
+            width: 0.4.sw,
+          )),
+          _buildButton(_ButtonConfig(
+            onTap: () {},
+            iconPath: 'assets/vectors/car.svg',
+            subLabel: 'Ehliyet Soruları & Çözümleri',
+            label: 'Ehliyet',
+            width: 0.4.sw,
+          )),
+          _buildButton(_ButtonConfig(
+            onTap: () => Get.toNamed(Routes.TESTLIST),
+            iconPath: 'assets/vectors/yds.svg',
+            subLabel: 'Yabancı Dil Hazırlık Soruları & Çözümleri',
+            label: 'YDS',
+            width: 0.5.sw,
+          )),
         ],
       ),
     );
   }
 
-  // Helper method to build buttons
-  Widget _buildButton({
-    required VoidCallback onTap,
-    required Color backgroundColor,
-    required String iconPath,
-    required String label,
-    required Color textColor,
-  }) {
-    return Expanded(
-      flex: 1,
-      child: GestureDetector(
-        onTap: onTap,
-        child: Container(
-          height: 150,
-          decoration: BoxDecoration(
-            gradient: LinearGradient(
-              colors: [
-                backgroundColor.withOpacity(0.4),
-                Get.theme.primaryColor,
-              ],
-              begin: Alignment.topLeft,
-              end: Alignment.bottomRight,
+  Widget _buildButton(_ButtonConfig config) {
+    return GestureDetector(
+      onTap: config.onTap,
+      child: Container(
+        padding: EdgeInsets.all(8.w),
+        width: config.width,
+        height: 150.h,
+        decoration: BoxDecoration(
+          color: Get.theme.cardTheme.color,
+          border: Border.all(color: Get.theme.primaryColor, width: 0.2),
+          borderRadius: BorderRadius.circular(8),
+          boxShadow: [
+            BoxShadow(
+              color: Get.theme.primaryColor.withOpacity(0.2),
+              blurRadius: 2,
+              offset: Offset(0, 2),
             ),
-            borderRadius: BorderRadius.circular(16),
-            boxShadow: [
-              BoxShadow(
-                color: Colors.black.withOpacity(0.15),
-                spreadRadius: 1,
-                blurRadius: 8,
-                offset: Offset(0, 4),
-              ),
-            ],
-          ),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              SvgPicture.asset(
-                iconPath,
-                height: 60.h,
-                width: 60.w,
-                fit: BoxFit.contain,
-              ),
-              SizedBox(height: 10.h),
-              Text(
-                label,
-                style: TextStyle(
-                  fontSize: 16.sp,
-                  fontWeight: FontWeight.w600,
-                  color: textColor,
-                ),
-              ),
-            ],
-          ),
+          ],
+        ),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            SvgPicture.asset(
+              config.iconPath,
+              height: 70.h,
+              width: 70.w,
+              fit: BoxFit.contain,
+            ),
+            Text(config.label, style: Get.theme.textTheme.bodyLarge),
+            Text(
+              config.subLabel,
+              style: Get.theme.textTheme.labelSmall,
+              textAlign: TextAlign.center,
+            ),
+          ],
         ),
       ),
     );
   }
+}
+
+class _ButtonConfig {
+  final VoidCallback onTap;
+  final String iconPath;
+  final String label;
+  final String subLabel;
+  final double width;
+
+  _ButtonConfig({
+    required this.onTap,
+    required this.iconPath,
+    required this.label,
+    required this.subLabel,
+    required this.width,
+  });
 }

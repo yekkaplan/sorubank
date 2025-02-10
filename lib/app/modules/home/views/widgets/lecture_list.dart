@@ -71,7 +71,6 @@ class EmployeesList extends StatelessWidget {
               return Container(
                 margin: EdgeInsets.zero,
                 padding: EdgeInsets.symmetric(horizontal: 20.h, vertical: 13.h),
-                // border only from top and bottom
                 decoration: BoxDecoration(
                     color: employeeItemTheme?.backgroundColor,
                     border: Border(

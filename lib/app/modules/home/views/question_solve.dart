@@ -4,11 +4,10 @@ import 'package:get/get.dart';
 
 import '../controllers/home_controller.dart';
 
-// Veri modelini oluşturun
 class Question {
   final String questionText;
   final List<Option> options;
-  int selectedOptionIndex = -1; // Seçilen opsiyonun indeksini takip et
+  int selectedOptionIndex = -1;
 
   Question({required this.questionText, required this.options});
 }
@@ -24,13 +23,11 @@ class QuestionSolvePage extends GetView<HomeController> {
 
   @override
   Widget build(BuildContext context) {
-    // Mock veri
     String currentTest = 'KPSS 2023';
     String currentSubject = 'Matematik';
     int currentQuestionIndex = 3;
     int totalQuestions = 10;
 
-    // Soru ve seçenekler
     Question question = Question(
       questionText:
           '$currentQuestionIndex. Aşağıdaki seçeneklerden hangisi doğru cevaptır?',
@@ -64,7 +61,6 @@ class QuestionSolvePage extends GetView<HomeController> {
                 ),
               ),
               SizedBox(height: 20.h),
-              // Soru Metni
               Text(
                 question.questionText,
                 style: TextStyle(
@@ -74,7 +70,6 @@ class QuestionSolvePage extends GetView<HomeController> {
                 ),
               ),
               SizedBox(height: 20.h),
-              // Seçenekler
               ListView.builder(
                 shrinkWrap: true,
                 physics: NeverScrollableScrollPhysics(),
@@ -84,20 +79,17 @@ class QuestionSolvePage extends GetView<HomeController> {
                     optionText: question.options[index].text,
                     isSelected: question.selectedOptionIndex == index,
                     onSelected: () {
-                      question.selectedOptionIndex = index; // Seçim güncelle
-                      // Ekranı yeniden oluştur
+                      question.selectedOptionIndex = index;
                       (context as Element).markNeedsBuild();
                     },
                   );
                 },
               ),
               SizedBox(height: 30.h),
-              // Navigasyon Butonları
               SizedBox(
                 width: Get.size.width,
                 child: ElevatedButton(
                   onPressed: () {
-                    // Cevap kontrolünü burada yap
                     ScaffoldMessenger.of(context).showSnackBar(
                       SnackBar(
                         content: Text('Doğru cevabı seçtiniz!'),
@@ -121,9 +113,7 @@ class QuestionSolvePage extends GetView<HomeController> {
                 children: [
                   Expanded(
                     child: ElevatedButton(
-                      onPressed: () {
-                        // Önceki soruya geçiş işlemi
-                      },
+                      onPressed: () {},
                       style: ElevatedButton.styleFrom(
                         backgroundColor: Colors.grey,
                         padding: EdgeInsets.symmetric(vertical: 12.h),
@@ -137,9 +127,7 @@ class QuestionSolvePage extends GetView<HomeController> {
                   SizedBox(width: 10.w),
                   Expanded(
                     child: ElevatedButton(
-                      onPressed: () {
-                        // Sonraki soruya geçiş işlemi
-                      },
+                      onPressed: () {},
                       style: ElevatedButton.styleFrom(
                         backgroundColor: Theme.of(context).primaryColor,
                         padding: EdgeInsets.symmetric(vertical: 12.h),
@@ -160,11 +148,10 @@ class QuestionSolvePage extends GetView<HomeController> {
   }
 }
 
-// Seçenekler için özel bir widget
 class OptionTile extends StatelessWidget {
   final String optionText;
   final bool isSelected;
-  final VoidCallback onSelected; // Seçim için geri dönüş
+  final VoidCallback onSelected;
 
   const OptionTile({
     required this.optionText,
@@ -176,7 +163,7 @@ class OptionTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: onSelected, // Seçim işlemi
+      onTap: onSelected,
       child: Container(
         margin: EdgeInsets.symmetric(vertical: 8.h),
         padding: EdgeInsets.all(12.w),

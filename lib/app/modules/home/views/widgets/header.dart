@@ -18,7 +18,7 @@ class Header extends StatelessWidget {
       height: 110.h,
       width: double.infinity,
       decoration: BoxDecoration(
-        color: theme.primaryColor,
+        color: theme.appBarTheme.backgroundColor,
       ),
       child: Stack(
         fit: StackFit.expand,
