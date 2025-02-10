@@ -12,6 +12,22 @@ Sorubank is a Flutter project designed to manage and organize a collection of qu
 - Search questions by keywords
 - User authentication and authorization
 
+## Screenshots
+
+Here are some screenshots of the application:
+
+### Main Screen
+
+![Main Screen](/preview_images/ss1.png)
+
+### Dark Mode Main Screen
+
+![Dark Mode Main Screen](/preview_images/ss2.png)
+
+### Questions List Screen
+
+![Questions List Screen](/preview_images/ss3.png)
+
 ## Installation
 
 To install and run this project locally, follow these steps:
@@ -43,11 +59,13 @@ To install and run this project locally, follow these steps:
 
 Once the application is running, you can use it on your connected device or emulator.
 
-## Screenshot
+## Technologies Used
 
-Here is a screenshot of the main screen:
-
-![Main Screen](/preview_images/ss.png)
+- Flutter
+- Dart
+- GetX for state management
+- ScreenUtil for responsive design
+- SVG for vector graphics
 
 ## Contributing
 
@@ -56,3 +74,7 @@ Contributions are welcome! Please fork the repository and create a pull request 
 ## License
 
 This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
+
+## Contact
+
+For any inquiries or feedback, please contact [yekpassage@gmail.com](mailto:yekpassage@gmail.com).
