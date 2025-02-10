@@ -76,68 +76,53 @@ class ContentGrid extends StatelessWidget {
     return SingleChildScrollView(
       child: Column(
         children: data.map((gridData) {
-          return Padding(
-            padding: EdgeInsets.symmetric(vertical: 6.h, horizontal: 10.w),
-            child: Container(
-              padding: EdgeInsets.all(16.w),
-              decoration: BoxDecoration(
-                color: isDarkMode ? Colors.grey[800] : Colors.grey.shade100,
-                borderRadius: BorderRadius.circular(12),
-                boxShadow: [
-                  BoxShadow(
-                    color: Colors.black12,
-                    blurRadius: 8,
-                    offset: Offset(0, 4),
-                  ),
-                ],
-              ),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Row(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      _buildIconContainer(isDarkMode),
-                      SizedBox(width: 12.w),
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            '${gridData.title} - ${gridData.subject}',
-                            style: theme.textTheme.bodyLarge?.copyWith(
-                              fontWeight: FontWeight.bold,
-                              color: isDarkMode ? Colors.white : Colors.black87,
-                            ),
-                          ),
-                          SizedBox(height: 4.h),
-                          Text(
-                            gridData.subtitle,
-                            style: theme.textTheme.bodyMedium?.copyWith(
-                              color: isDarkMode
-                                  ? Colors.white70
-                                  : Colors.grey[800],
-                            ),
-                          ),
-                          SizedBox(height: 4.h),
-                          Text(
-                            '${gridData.exampleType} • ${gridData.date}',
-                            style: theme.textTheme.bodySmall?.copyWith(
-                              color: isDarkMode
-                                  ? Colors.white60
-                                  : Colors.grey[600],
-                            ),
-                          ),
-                        ],
-                      ),
-                    ],
-                  ),
-                  Icon(
-                    Icons.arrow_forward_ios,
-                    color: isDarkMode ? Colors.white70 : Colors.grey[600],
-                    size: 20.w,
-                  ),
-                ],
-              ),
+          return Container(
+            padding: EdgeInsets.all(16.h),
+            margin: EdgeInsets.only(bottom: 16.h),
+            decoration: BoxDecoration(
+              color: Get.theme.cardColor,
+              borderRadius: BorderRadius.circular(12),
+              boxShadow: [
+                BoxShadow(
+                  color: Colors.black12,
+                  blurRadius: 8,
+                  offset: Offset(0, 2),
+                ),
+              ],
+            ),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Row(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    _buildIconContainer(isDarkMode),
+                    SizedBox(width: 12.w),
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text('${gridData.title} - ${gridData.subject}',
+                            style: Get.theme.textTheme.bodyLarge),
+                        SizedBox(height: 4.h),
+                        Text(
+                          gridData.subtitle,
+                          style: Get.theme.textTheme.bodyMedium,
+                        ),
+                        SizedBox(height: 4.h),
+                        Text(
+                          '${gridData.exampleType} • ${gridData.date}',
+                          style: Get.theme.textTheme.bodySmall,
+                        )
+                      ],
+                    ),
+                  ],
+                ),
+                Icon(
+                  Icons.arrow_forward_ios,
+                  size: 16.w,
+                  color: Get.iconColor,
+                ),
+              ],
             ),
           );
         }).toList(),

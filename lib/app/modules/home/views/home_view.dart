@@ -10,7 +10,6 @@ import '../../../components/my_widgets_animator.dart';
 import '../controllers/home_controller.dart';
 import 'widgets/examples_grid.dart';
 import 'widgets/header.dart';
-import 'widgets/lecture_list.dart';
 
 class HomeView extends GetView<HomeController> {
   const HomeView({Key? key}) : super(key: key);
@@ -67,8 +66,6 @@ class HomeView extends GetView<HomeController> {
                         padding: EdgeInsets.symmetric(horizontal: 20.w),
                         child: DataGrid(),
                       ),
-                      8.verticalSpace,
-                      EmployeesList(),
                     ],
                   ),
                 ),
